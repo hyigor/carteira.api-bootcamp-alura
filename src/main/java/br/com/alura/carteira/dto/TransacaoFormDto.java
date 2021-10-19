@@ -1,6 +1,7 @@
 package br.com.alura.carteira.dto;
 
 import br.com.alura.carteira.modelo.TipoTransacao;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class TransacaoFormDto {
     @NotNull
     @NotEmpty
     @Size(min = 5, max = 6)
+    @Pattern(regexp = "[a-zA-Z]{4}[0-9][0-9]?")
     private String ticker;
     @NotNull
     @DecimalMin("0.01")
@@ -27,6 +29,9 @@ public class TransacaoFormDto {
     private int quantidade;
     @NotNull
     private TipoTransacao tipo;
+    @NotNull
+    @JsonAlias("usuario_id")
+    private Long usuarioId;
 
 //    public TransacaoFormDto() {
 //
